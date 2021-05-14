@@ -1,0 +1,82 @@
+﻿@page
+@model SocialCards.Pages.IndexModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.Title</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+          display: grid;
+          grid-template-columns: 1.75fr 1fr;
+          grid-template-rows: 1fr;
+          gap: 0px 0px;
+          grid-template-areas:
+            ". .";
+        }
+        
+        .title {             
+            grid-area: 1 / 1 / 2;
+            display: flex;
+            flex-flow: column;
+            justify-content: center; /* center horizontal */
+            align-items: center; 
+            /* pattern */
+            background-color: #e5e5f7;
+            opacity: 1;
+            background-image:  radial-gradient(#444cf7 2px, transparent 2px), radial-gradient(#444cf7 2px, #e5e5f7 2px);
+            background-size: 80px 80px;
+            background-position: 0 0,40px 40px;
+        }
+        
+        .title p {
+            width: auto;
+            font-size: 8rem;
+            color: black;
+            font-weight: bold;
+            font-family: "Helvetica Neue";    
+            text-shadow: 4px 4px #ffffff;     
+        }
+        .title small.author {
+            display: block;
+            font-size: 2rem;
+            color: #444144;
+            font-style: italic;
+            text-shadow: 2px 2px #ffffff;   
+            text-align: right;  
+        }
+        .background { 
+            height: 100vh;
+            background-image: url(@Model.BackgroundUrl);
+            background-position: center center;
+            background-size: cover;
+            grid-area: 1 / 2 / 2 / 3;
+        }
+    </style>
+</head>
+<body>
+<section class="card">
+    <div class="title">
+        <p>
+            @Model.Title
+            <small class="author">
+                by Khalid Abuhakmeh
+                <br>
+                twitter: @@buhakmeh
+                <br>
+                https://abuhakmeh.com
+            </small>
+        </p>
+    </div>
+    <div class="background">
+        
+    </div>
+</section>
+</body>
+</html>
