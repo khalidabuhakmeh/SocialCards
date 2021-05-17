@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-app.UseRouting().UseEndpoints(endpoints => endpoints.MapRazorPages());
+app.MapRazorPages();
 
 await app.StartAsync();
 var url = app.Addresses.FirstOrDefault(url => url.StartsWith("https"));
