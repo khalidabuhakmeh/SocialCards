@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +19,7 @@ var slugify = new Slugify.SlugHelper();
 
 // playwright
 var playwright = await Playwright.CreateAsync();
-var browser = await playwright.Chromium.LaunchAsync();
+await using var browser = await playwright.Chromium.LaunchAsync();
 var page = await browser.NewPageAsync( new ViewportSize {
     Width = 1600, 
     Height = 1000
