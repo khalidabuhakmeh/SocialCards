@@ -1,18 +1,23 @@
+using System;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PlaywrightSharp;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
+builder.Server.UseUrls($"https://{IPAddress.Loopback}:0");
 
 var app = builder.Build();
 app.MapRazorPages();
 
 await app.StartAsync();
-var url = app.Addresses.FirstOrDefault(url => url.StartsWith("https"));
+var port = new Uri(app.Addresses.First(url => url.StartsWith("https"))).Port;
+var url = $"https://localhost:{port}/";
 
 var title = args[0];
 var background = HttpUtility.UrlEncode(args[1]);
