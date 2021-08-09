@@ -2,6 +2,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PlaywrightSharp;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,3 +29,6 @@ var page = await browser.NewPageAsync( new ViewportSize {
 
 await page.GoToAsync($"{url}?title={title}&bg={background}");
 await page.ScreenshotAsync($"{slugify.GenerateSlug(title)}.png");
+
+var lifetime = app.Services.GetService<IHostLifetime>() as IDisposable;
+lifetime?.Dispose();
